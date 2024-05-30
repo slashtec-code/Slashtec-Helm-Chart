@@ -33,7 +33,6 @@ spec:
       {{- end }}
       labels:
         version: "{{.Values.deployment.version}}"
-        admission.datadoghq.com/enabled: "true"
         checksum/config: {{ .Values.configMap | toYaml | sha1sum }}
         {{- include "app.labels" . | nindent 8 }}
     spec:
@@ -106,6 +105,7 @@ spec:
           {{- end }}
           {{- if .Values.deployment.envFrom }}
           envFrom:
+            {{- if .externalSecret.enabled }}
             {{- if eq .Values.deployment.envFrom "externalSecret" }}
             - secretRef:
                 name: {{ include "app.fullname" . }}-{{ .Values.externalSecret.suffix }}
@@ -121,6 +121,7 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
+          {{- if .persistence.enabled }}
           {{- with .Values.deployment.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
@@ -128,10 +129,12 @@ spec:
         {{- with .Values.deployment.extraContainers }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
+      {{- if .persistence.enabled }}
       {{- with .Values.deployment.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.deployment.nodeSelector }}
       {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -140,6 +143,7 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.deployment.tolerations }}
       {{- with .Values.deployment.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}

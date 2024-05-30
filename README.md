@@ -9,13 +9,14 @@ Once Helm has been set up correctly, add the repo as follows:
   ```helm repo add slashtec https://slashtec-code.github.io/Slashtec-Helm-Chart```
 
 If you had already added this repo earlier, run `helm repo update` to retrieve
-the latest versions of the packages.  You can then run `helm search repo
-<alias>` to see the charts.
+the latest versions of the packages.  
+
+You can then run `helm search repo slashtec` to see the charts.
 
 To install the <chart-name> chart:
 
     ```helm install my-<chart-name> <alias>/<chart-name>```
-    Ex:  ```helm install my-service slashtec/slashtec-helm-chart -f values.yaml```
+Ex:  ```helm install my-service slashtec/slashtec-helm-chart -f values.yaml```
 
 To uninstall the chart:
 
