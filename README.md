@@ -1,4 +1,4 @@
-# Smarterai-Helm-Chart
+# Slashtec-Helm-Chart
 ## Usage
 
 [Helm](https://helm.sh) must be installed to use the charts.  Please refer to
@@ -15,6 +15,7 @@ the latest versions of the packages.  You can then run `helm search repo
 To install the <chart-name> chart:
 
     ```helm install my-<chart-name> <alias>/<chart-name>```
+    Ex:  ```helm install my-service slashtec/slashtec-helm-chart -f values.yaml```
 
 To uninstall the chart:
 
