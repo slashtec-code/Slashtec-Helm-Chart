@@ -89,10 +89,10 @@ deployment:
       # volumes:
       #   - name: tz-config
       #     hostPath:
-  volumes:
-    - name: *nameOverride
-      persistentVolumeClaim:
-        claimName: *nameOverride
+  #volumes:
+  #  - name: *nameOverride
+  #    persistentVolumeClaim:
+  #      claimName: *nameOverride
 StatefulSet:
   enabled: false
 cronjob:
