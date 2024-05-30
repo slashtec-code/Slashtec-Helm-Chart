@@ -40,9 +40,9 @@ deployment:
     pullPolicy: IfNotPresent
     tag: ""
   envFrom: "externalSecret"
-  #volumeMounts:
-  #  - mountPath: 
-  #    name: *nameOverride
+  volumeMounts:
+    - mountPath: /path/to/folder
+      name: *nameOverride
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -50,16 +50,16 @@ deployment:
       maxSurge: 2
   livenessProbe:
     httpGet:
-      path: /check
-      port: 8080
+      path: /
+      port: 80
     initialDelaySeconds: 20
     periodSeconds: 10
     failureThreshold: 3
     timeoutSeconds: 10
   readinessProbe:
     httpGet:
-      path: /check
-      port: 8080
+      path: /
+      port: 80
     initialDelaySeconds: 20
     periodSeconds: 10
     failureThreshold: 3
@@ -80,19 +80,18 @@ deployment:
       memory: 1024Mi
       cpu: 1
   #nodeSelector:
-  #  group: NODE_SELECTOR_GROUP
+  #  group: service-workers
   #tolerations:
-  #  - key: TOLERATION_KEY
+  #  - key: special-nodegroup
   #    operator: Equal
-  #    value: TOLERATION_VALUE
+  #    value: service-workers
   #    effect: NoSchedule
-      # volumes:
-      #   - name: tz-config
-      #     hostPath:
   volumes:
     - name: *nameOverride
       persistentVolumeClaim:
         claimName: *nameOverride
+  migrationjob:
+    enabled: false
 StatefulSet:
   enabled: false
 cronjob:
@@ -139,11 +138,11 @@ ingress:
     enabled: false
 # ExternalSecret configuration
 externalSecret:
-  enabled: true
+  enabled: false
   suffix: secret
   kind: ClusterSecretStore
   secretStore: global-secret-store
-  secretPath: EXTERNAL_SECRET_PATH
+  secretPath: /path/to/secret
 serviceMonitor:
   enabled: false
 podMonitor:
@@ -151,8 +150,8 @@ podMonitor:
 persistence:
   enabled: false
   storageClass: gp3
-  size: 
-  accessMode: 
+  size: 10
+  accessMode: ReadWriteOnce
 # Autoscaling configuration
 autoscaling:
   enabled: true
