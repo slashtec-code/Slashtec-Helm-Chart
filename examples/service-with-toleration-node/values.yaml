@@ -9,6 +9,13 @@ deployment:
   image:
     repository: nginx
     tag: latest
+  nodeSelector:
+    group: services-workers
+  tolerations:
+    - key: special-nodegroup
+      operator: Equal
+      value: services-workers
+      effect: NoSchedule
 ingress:
   enabled: false
 

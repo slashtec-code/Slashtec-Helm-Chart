@@ -9,6 +9,8 @@ deployment:
   image:
     repository: nginx
     tag: latest
+  migrationjob:
+    enabled: true
 ingress:
   enabled: false
 

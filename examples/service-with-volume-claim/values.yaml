@@ -9,6 +9,9 @@ deployment:
   image:
     repository: nginx
     tag: latest
+  volumeMounts:
+    - mountPath: /etc/nginx/conf.d
+      name: *nameOverride
 ingress:
   enabled: false
 
@@ -16,4 +19,7 @@ externalSecret:
   enabled: false
 
 persistence:
-  enabled: false
+  enabled: true
+  storageClass: gp3
+  size: 10
+  accessMode: ReadWriteOnce

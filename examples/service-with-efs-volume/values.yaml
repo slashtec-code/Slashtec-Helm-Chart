@@ -9,6 +9,13 @@ deployment:
   image:
     repository: nginx
     tag: latest
+  volumes:
+    - name: persistent-storage
+      persistentVolumeClaim:
+        claimName: efs-claim
+  volumeMounts:
+    - mountPath: /var/www/analysis-service/storage/app
+      name: persistent-storage
 ingress:
   enabled: false
 
@@ -16,4 +23,6 @@ externalSecret:
   enabled: false
 
 persistence:
-  enabled: false
+  enabled: true
+
+
