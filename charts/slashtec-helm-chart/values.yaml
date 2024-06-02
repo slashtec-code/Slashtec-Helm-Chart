@@ -39,7 +39,7 @@ deployment:
     repository: <acc-id>.dkr.ecr.<region>.amazonaws.com/<repo-name>
     pullPolicy: IfNotPresent
     tag: ""
-  envFrom: "externalSecret"
+  #envFrom: "externalSecret"
   volumeMounts:
     - mountPath: /path/to/folder
       name: *nameOverride
