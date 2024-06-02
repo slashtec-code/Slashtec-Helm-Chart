@@ -105,7 +105,7 @@ spec:
           {{- end }}
           {{- if .Values.deployment.envFrom }}
           envFrom:
-            {{- if .externalSecret.enabled }}
+            {{- if .Values.externalSecret.enabled }}
             {{- if eq .Values.deployment.envFrom "externalSecret" }}
             - secretRef:
                 name: {{ include "app.fullname" . }}-{{ .Values.externalSecret.suffix }}
@@ -122,7 +122,7 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
-          {{- if .persistence.enabled }}
+          {{- if .Values.persistence.enabled }}
           {{- with .Values.deployment.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
@@ -131,7 +131,7 @@ spec:
         {{- with .Values.deployment.extraContainers }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- if .persistence.enabled }}
+      {{- if .Values.persistence.enabled }}
       {{- with .Values.deployment.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
