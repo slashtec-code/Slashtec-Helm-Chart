@@ -112,13 +112,26 @@ spec:
             {{- end }}
             {{- end }}
           {{- end }}
+          {{- if .Values.deployment.envFrom }}
+          envFrom:
+            {{- if .Values.externalSecretgcp.enabled }}
+            {{- if eq .Values.deployment.envFrom "externalSecretgcp" }}
+            - secretRef:
+                name: {{ .Values.externalSecretgcp.name }}
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.livenessProbe.enabled }}
           {{- with .Values.deployment.livenessProbe }}
           livenessProbe: 
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           {{- with .Values.deployment.readinessProbe }}
           readinessProbe: 
             {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
