@@ -112,12 +112,10 @@ spec:
             {{- end }}
             {{- end }}
           {{- end }}
-          {{- if .Values.deployment.envFrom }}
+          {{- if .Values.externalSecretgcp.enabled }}
           envFrom:
-            {{- if .Values.externalSecretgcp.enabled }}
             - secretRef:
                 name: {{ .Values.externalSecretgcp.name }}
-            {{- end }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           {{- with .Values.deployment.livenessProbe }}
