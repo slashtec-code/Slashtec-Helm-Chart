@@ -1,12 +1,12 @@
 # Override the default helm chart name
-nameOverride: &nameOverride "my-service"
+nameOverride: &nameOverride ""
 # Override the default helm chart full name
-fullnameOverride: &fullnameOverride "my-service"
+fullnameOverride: &fullnameOverride ""
 # Specify the cluster name
-cluster: &cluster "dev"
+cluster: &cluster ""
 # Specify the environment name (production, staging, prodelopment, etc.)
 
-environment: &environment "dev"
+environment: &environment ""
 # Labels to attach to all Kubernetes resources created by this chart
 
 commonLabels:
@@ -130,8 +130,8 @@ ingress:
             path: /
             pathType: Prefix
   annotations:
-    ingress.kubernetes.io/secure-backends: 'false'
-    kubernetes.io/tls-acme: 'false'
+    #ingress.kubernetes.io/secure-backends: 'false'
+    #kubernetes.io/tls-acme: 'false'
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
     nginx.ingress.kubernetes.io/rewrite-target: /
   tls:
