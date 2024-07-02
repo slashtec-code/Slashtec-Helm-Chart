@@ -115,7 +115,7 @@ spec:
           {{- if .Values.externalSecretgcp.enabled }}
           envFrom:
             - secretRef:
-                name: {{ .Values.externalSecretgcp.name }}
+                name: {{ include "app.fullname" . }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           {{- with .Values.deployment.livenessProbe }}
