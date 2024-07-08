@@ -3,6 +3,17 @@ entries:
   slashtec-helm-chart:
   - apiVersion: v2
     appVersion: 0.0.2
+    created: "2024-07-08T13:15:37.632091972Z"
+    description: Centralized Helm Chart for slashtec Kubernetes Clusters
+    digest: 87d9aa06ac0b34dc2c1130a1fd359def239420bd55f9dc3d2b88df69087757fb
+    icon: https://helm.sh/img/helm.svg
+    name: slashtec-helm-chart
+    type: application
+    urls:
+    - https://github.com/slashtec-code/Slashtec-Helm-Chart/releases/download/slashtec-helm-chart-1.0.16/slashtec-helm-chart-1.0.16.tgz
+    version: 1.0.16
+  - apiVersion: v2
+    appVersion: 0.0.2
     created: "2024-07-02T08:33:31.827812058Z"
     description: Centralized Helm Chart for slashtec Kubernetes Clusters
     digest: 8cddbdd603c298309f23e15da3dbdb5467e3490a27a6cf40022d96fd1de9dcef
@@ -167,4 +178,4 @@ entries:
     urls:
     - https://github.com/slashtec-code/Slashtec-Helm-Chart/releases/download/smarterai-helm-charts-1.0.1/smarterai-helm-charts-1.0.1.tgz
     version: 1.0.1
-generated: "2024-07-02T08:33:31.827934026Z"
+generated: "2024-07-08T13:15:37.632208261Z"
